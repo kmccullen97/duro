@@ -15,7 +15,7 @@ setuptools.setup(
     author_email=duro.__author_email__,
     url=duro.__url__,
     license=duro.__license__,
-    packages=setuptools.find_packages(),
+    packages=['duro', 'duro.cmds', 'duro.models', 'duro.ui'],
     install_requires=['PyYAML'],
     entry_points={'console_scripts': ['duro=duro.__main__:run']},
 )
