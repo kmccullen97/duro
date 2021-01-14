@@ -36,7 +36,7 @@ def main(screen):
                 db.open_board(board_id)
             board_ui.new_board_open()
             board_ui.should_refresh = True
-        else:
+        elif board_ui.board is not None:
             board_ui.handle_input(key)
 
     db.close()
