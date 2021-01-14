@@ -40,14 +40,18 @@ default_config = {
 
 class Config:
     def __init__(self):
-        file_path = Config.get_config_path()
-        config_file = os.path.join(file_path, "config.yml")
+        config_path = Config.get_config_path()
+        config_file = os.path.join(config_path, "config.yml")
 
         config = default_config
-        config["data_file"] = os.path.join(file_path, "data.db")
+        data_path = Config.get_data_path()
+        config["data_file"] = os.path.join(data_path, "data.db")
 
-        if not os.path.isdir(file_path):
-            os.mkdir(file_path)
+        if not os.path.isdir(config_path):
+            os.mkdir(config_path)
+
+        if not os.path.isdir(data_path):
+            os.mkdir(data_path)
 
         if os.path.isfile(config_file):
             with open(config_file, "r") as f:
@@ -88,6 +92,16 @@ class Config:
     @staticmethod
     def get_config_path():
         folder = os.path.join(os.path.expanduser("~"), ".config", __title__)
+
+        if "ENV" in os.environ and os.environ["ENV"] == "dev":
+            folder = "./data/"
+
+        return folder
+
+    @staticmethod
+    def get_data_path():
+        folder = os.path.join(os.path.expanduser("~"), ".local", "share",
+                              __title__)
 
         if "ENV" in os.environ and os.environ["ENV"] == "dev":
             folder = "./data/"
