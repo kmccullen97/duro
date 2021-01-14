@@ -24,13 +24,13 @@ attr_codes = {
 
 default_config = {
     "colors": {
-        "default": ["white", 0, 0],
-        "none": ["yellow", 0, 0],
-        "id": ["cyan", 0, 0],
-        "date": ["yellow", 0, 0],
+        "default": ["white", -1, 0],
+        "none": ["yellow", -1, 0],
+        "id": ["cyan", -1, 0],
+        "date": ["yellow", -1, 0],
         "footer": ["white", "magenta", 0],
-        "active_list": ["cyan", 0, 0],
-        "active_card": ["cyan", 0, 0]
+        "active_list": ["cyan", -1, 0],
+        "active_card": ["cyan", -1, 0]
     },
     "date_format": '%b %d, %Y %I:%M %p',
     "active": "bold",
@@ -68,10 +68,7 @@ class Config:
 
         self.load_color_theme(config["colors"])
 
-    def load_color_theme(self,
-                         color_theme,
-                         fg=curses.COLOR_WHITE,
-                         bg=curses.COLOR_BLACK):
+    def load_color_theme(self, color_theme, fg=curses.COLOR_WHITE, bg=-1):
         self.colors = {}
 
         for i, key in enumerate(color_theme.keys()):
