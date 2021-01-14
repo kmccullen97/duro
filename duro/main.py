@@ -11,6 +11,7 @@ from duro.footer import display_footer
 
 def main(screen):
     curses.curs_set(0)
+    curses.use_default_colors()
     mh, mw = screen.getmaxyx()
 
     config = Config()
