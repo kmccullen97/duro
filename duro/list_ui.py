@@ -43,7 +43,7 @@ class ListUI:
         displayed_cards = self.cards[self.card_offset:self.card_offset +
                                      self.num_cards]
         for i, card in enumerate(displayed_cards):
-            card_height = card.get_card_height(w)
+            card_height = card.get_card_height(w - 1)
             if y + card_height > h - 1:
                 break
             card_win = curses.newwin(card_height, w - 1, y, x + 1)
