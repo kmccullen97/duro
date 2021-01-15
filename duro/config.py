@@ -2,6 +2,7 @@ import curses
 import yaml
 import os
 import datetime
+from schema import Schema, Or
 
 from duro.__init__ import __title__
 
@@ -37,6 +38,24 @@ default_config = {
     "min_list_width": 50
 }
 
+config_schema = {
+    "data_file": str,
+    "colors": {
+        str: [
+            Or(int, Or(*color_codes.keys())),
+            Or(int, Or(*color_codes.keys())),
+            Or(int, Or(*attr_codes.keys()))
+        ]
+    },
+    "date_format": str,
+    "active": Or(int, Or(*attr_codes.keys())),
+    "min_list_width": int
+}
+
+
+class ParseConfigFailedException(Exception):
+    pass
+
 
 class Config:
     def __init__(self):
@@ -60,6 +79,8 @@ class Config:
                 config = {**config, **user_config}
                 if "colors" in user_config:
                     config["colors"] = {**colors, **user_config["colors"]}
+
+        Config.validate_config_input(config)
 
         self.data_file = config["data_file"]
         self.date_format = config["date_format"]
@@ -108,3 +129,7 @@ class Config:
     @staticmethod
     def parse_color(codes, value):
         return codes[value] if type(value) is str else value
+
+    @staticmethod
+    def validate_config_input(config):
+        Schema(config_schema).validate(config)
