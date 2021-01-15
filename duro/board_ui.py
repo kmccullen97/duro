@@ -52,7 +52,7 @@ class BoardUI:
 
     def handle_input(self, key):
         if self.commands.check("lists.new", key):
-            form = Form(self.win, "New List")
+            form = Form(self.win, self.config, "New List")
             form.add_field("Name", 30)
             if form.edit():
                 self.db.add_list(self.board.id, form.get_value("Name"))
@@ -69,7 +69,10 @@ class BoardUI:
             if self.active_list < len(self.board.lists) - 1:
                 self.reorder_list(1)
         elif self.commands.check("lists.delete", key):
-            form = Form(self.win, "Confirm Delete List", ok_label="Delete")
+            form = Form(self.win,
+                        self.config,
+                        "Confirm Delete List",
+                        ok_label="Delete")
             form.current_option = 1
             if form.edit():
                 self.db.delete_list(self.board.lists[self.active_list].id)
@@ -94,7 +97,10 @@ class BoardUI:
                 self.refresh_board()
             self.should_refresh = True
         elif self.commands.check("cards.delete", key):
-            form = Form(self.win, "Confirm Delete Card", ok_label="Delete")
+            form = Form(self.win,
+                        self.config,
+                        "Confirm Delete Card",
+                        ok_label="Delete")
             form.current_option = 1
             if form.edit():
                 self.db.delete_card(self.active_list_item.card_item().id)
@@ -123,8 +129,8 @@ class BoardUI:
             self.commands, key) or self.should_refresh
 
     def card_form(self, title, value=""):
-        form = Form(self.win, title)
-        form.add_field("Name", 80, value)
+        form = Form(self.win, self.config, title)
+        form.add_field("Name", 50, value)
         if form.edit():
             return form.get_value("Name")
 

@@ -5,6 +5,7 @@ sys.path.append(os.getcwd())
 
 from duro.cmds.main import main_commands
 from duro.cmds.boards import boards_menu_commands
+from duro.cmds.form import form_commands
 
 spacing = 4
 
@@ -35,6 +36,7 @@ with open("./scripts/commands-template.md", "r") as f:
 md = md.replace("MAIN_COMMANDS", get_commands_text(main_commands))
 md = md.replace("BOARDS_MENU_COMMANDS",
                 get_commands_text(boards_menu_commands))
+md = md.replace("FORM_COMMANDS", get_commands_text(form_commands))
 
 with open("./docs/commands.md", "w") as f:
     f.write(md)
