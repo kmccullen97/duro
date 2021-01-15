@@ -23,7 +23,7 @@ class Form:
         self.current_field = 0
         self.current_option = 0
         self.is_field_active = False
-        self.char_re = r'[A-Za-z0-9 !@#$%^&*(){}|;\':",./<>?`~[\]-_]'
+        self.char_re = r'[A-Za-z0-9 !@#$%^&*(){}|;\':",./<>?`~[\]\-_]'
         self.add_option("Cancel", cancel=True)
         self.add_option(ok_label, ok=True)
 
