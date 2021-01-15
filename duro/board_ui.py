@@ -124,7 +124,7 @@ class BoardUI:
 
     def card_form(self, title, value=""):
         form = Form(self.win, title)
-        form.add_field("Name", 80, value)
+        form.add_field("Name", 50, value)
         if form.edit():
             return form.get_value("Name")
 

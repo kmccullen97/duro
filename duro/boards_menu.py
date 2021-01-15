@@ -67,5 +67,4 @@ class BoardsMenu:
         name = ""
         if form.edit():
             name = form.get_value("Name")
-        form.clear()
         return name
