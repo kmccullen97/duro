@@ -1,6 +1,7 @@
 import argparse
 import os
 import curses
+from schema import SchemaError
 
 from duro.__init__ import __title__, __version__, __description__
 from duro.config import Config
@@ -24,7 +25,19 @@ def run():
     if args.config_path:
         print(os.path.join(Config.get_config_path(), "config.yml"))
     else:
-        curses.wrapper(main)
+        is_prod = "ENV" not in os.environ or os.environ["ENV"] not in [
+            "dev", "debug"
+        ]
+        if is_prod:
+            try:
+                curses.wrapper(main)
+            except SchemaError as e:
+                print("Failed to parse config.")
+                print(" ".join(e.args))
+            except Exception:
+                print("An unexpected error occured.")
+        else:
+            curses.wrapper(main)
 
 
 if __name__ == '__main__':
