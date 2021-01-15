@@ -40,3 +40,15 @@ e          edit board
 q          quit
 
 ```
+
+### Form Commands
+```
+down, enter    move to next field or options
+up             move to previous field or options
+left           move cursor left, or option left
+right          move cursor right, or option right
+backspace      backspace
+enter          submit form if on option
+?              help
+
+```

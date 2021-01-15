@@ -45,7 +45,10 @@ class BoardsMenu:
                     self.db.add_board(board_name)
                 menu.refresh = True
             elif self.commands.check("board.delete", key):
-                form = Form(self.screen, "Confirm Delete", ok_label="Delete")
+                form = Form(self.screen,
+                            self.config,
+                            "Confirm Delete",
+                            ok_label="Delete")
                 form.current_option = 1
                 if form.edit():
                     self.db.delete_board(menu.active_item.id)
@@ -61,7 +64,7 @@ class BoardsMenu:
                 return menu.active_item.id
 
     def board_form(self, title, value=""):
-        form = Form(self.screen, title)
+        form = Form(self.screen, self.config, title)
         form.add_field("Name", 30, value)
 
         name = ""

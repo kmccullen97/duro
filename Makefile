@@ -6,7 +6,7 @@ run:
 lint:
 	$(PY) -m flake8 .
 
-g-docs:
+docs:
 	$(PY) scripts/generate_command_docs.py
 	$(PY) scripts/generate_default_config.py
 

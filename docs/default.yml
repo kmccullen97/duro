@@ -2,19 +2,19 @@ active: bold
 colors:
   active_card:
   - cyan
-  - 0
+  - -1
   - 0
   active_list:
   - cyan
-  - 0
+  - -1
   - 0
   date:
   - yellow
-  - 0
+  - -1
   - 0
   default:
   - white
-  - 0
+  - -1
   - 0
   footer:
   - white
@@ -22,11 +22,11 @@ colors:
   - 0
   id:
   - cyan
-  - 0
+  - -1
   - 0
   none:
   - yellow
-  - 0
+  - -1
   - 0
 data_file: path/to/data/file
 date_format: '%b %d, %Y %I:%M %p'

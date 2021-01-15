@@ -1,10 +1,14 @@
 import curses
 import re
 
+from duro.commands import Commands
+from duro.cmds.form import form_commands
+
 
 class Form:
-    def __init__(self, screen, title, ok_label="Ok"):
+    def __init__(self, screen, config, title, ok_label="Ok"):
         self.screen = screen
+        self.commands = Commands(form_commands, config)
         self.title = title
         self.loop = True
         self.submitted = False
@@ -82,29 +86,29 @@ class Form:
             option_x -= 1
 
     def handle_fields_input(self, key):
-        if key in [curses.KEY_DOWN, curses.KEY_ENTER, 10]:
+        if self.commands.check("next", key):
             if self.current_field == len(self.fields) - 1:
                 self.is_field_active = False
             else:
                 self.current_field += 1
                 self.cur_x = self.cur_x_max()
-        elif key in [curses.KEY_UP]:
+        elif self.commands.check("previous", key):
             if self.is_field_active:
                 if self.current_field > 0:
                     self.current_field -= 1
                     self.cur_x = self.cur_x_max()
-        elif key == curses.KEY_LEFT:
+        elif self.commands.check("left", key):
             if self.cur_x > self.cur_x_min:
                 self.cur_x -= 1
             elif self.field["offset"] > 0:
                 self.field["offset"] -= 1
-        elif key == curses.KEY_RIGHT:
+        elif self.commands.check("right", key):
             if self.cur_x < self.cur_x_max():
                 self.cur_x += 1
             elif len(self.field["value"]
                      ) - self.field["offset"] > self.field["length"]:
                 self.field["offset"] += 1
-        elif key == curses.KEY_BACKSPACE:
+        elif self.commands.check("backspace", key):
             index = self.field["offset"] + self.cur_x - self.cur_x_min
             if index > 0:
                 self.field["value"] = self.field[
@@ -124,15 +128,15 @@ class Form:
                     self.cur_x += 1
 
     def handle_options_input(self, key):
-        if key in [curses.KEY_UP]:
+        if self.commands.check("previous", key):
             self.is_field_active = True
-        elif key == curses.KEY_LEFT:
+        elif self.commands.check("left", key):
             if self.current_option < len(self.options) - 1:
                 self.current_option += 1
-        elif key == curses.KEY_RIGHT:
+        elif self.commands.check("right", key):
             if self.current_option > 0:
                 self.current_option -= 1
-        elif key in [curses.KEY_ENTER, 10]:
+        elif self.commands.check("submit", key):
             option = self.options[self.current_option]
             if option["ok"]:
                 self.submitted = True
