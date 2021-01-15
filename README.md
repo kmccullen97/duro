@@ -1,5 +1,7 @@
 ![duro logo](https://raw.githubusercontent.com/kmccullen97/duro/main/res/duro-logo.png)
 
+![pypi version](https://img.shields.io/pypi/v/duro)
+
 A customizable kanban board for the terminal.
 
 ![duro screenshot](https://raw.githubusercontent.com/kmccullen97/duro/main/res/duro-screenshot.png)
@@ -21,6 +23,13 @@ Check out [milestones](https://github.com/kmccullen97/duro/milestones) for upcom
 pip3 install duro
 ```
 
+##### Windows
+
+Windows requires `windows-curses` as an additional dependency. Install with
+```
+pip3 install windows-curses
+```
+
 ### Installing from source
 
 - Clone the repo `git clone https://github.com/kmccullen97/duro.git`
@@ -29,9 +38,11 @@ pip3 install duro
 ## Usage
 
 ### Commands
+
 Checkout a list of all commands [here](https://github.com/kmccullen97/duro/blob/main/docs/commands.md).
 
 ### Command line arguments
+
 ```
 usage: duro [-h] [-v] [-c]
 
@@ -44,7 +55,9 @@ optional arguments:
 ```
 
 ## Configuration
+
 Duro supports a custom configuration yml file. Learn more [here](https://github.com/kmccullen97/duro/blob/main/docs/configuration.md).
 
 ## Contributing
+
 Looking to get involved? Checkout the contributing guide [here](https://github.com/kmccullen97/duro/blob/main/CONTRIBUTING.md).
