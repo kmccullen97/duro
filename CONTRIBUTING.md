@@ -30,4 +30,10 @@ New to the project? Check out the [good first issue](https://github.com/kmcculle
 - install dependencies `pip3 install -r requirements.txt`
 - run the project `ENV=dev python3 -m duro` or `make run`
 
+Other Actions
+- Linting `flake8 .` or `make lint`
+- Setup pre-commit
+   - make executable `chmod +x .githooks/pre-commit`
+   - add git hooks path `git config core.hooksPath .githooks`
+
 When `ENV` is set to `dev` the config file and data file locations are in the `./data` directory.

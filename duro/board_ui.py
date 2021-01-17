@@ -145,8 +145,8 @@ class BoardUI:
         new_active_list = self.active_list + diff
         if new_active_list >= 0 and new_active_list < len(self.board.lists):
             self.active_list = new_active_list
-            if self.active_list < self.list_offset or self.list_offset + self.num_cols > len(
-                    self.board.lists):
+            if self.active_list < self.list_offset or \
+                    self.list_offset + self.num_cols > len(self.board.lists):
                 self.list_offset -= 1
             elif self.active_list > self.list_offset + self.num_cols - 1:
                 self.list_offset += 1

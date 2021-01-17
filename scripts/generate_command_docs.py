@@ -3,9 +3,9 @@ import sys
 
 sys.path.append(os.getcwd())
 
-from duro.cmds.main import main_commands
-from duro.cmds.boards import boards_menu_commands
-from duro.cmds.form import form_commands
+from duro.cmds.main import main_commands  # noqa E402
+from duro.cmds.boards import boards_menu_commands  # noqa E402
+from duro.cmds.form import form_commands  # noqa E402
 
 spacing = 4
 

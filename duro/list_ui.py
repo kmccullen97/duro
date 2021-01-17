@@ -29,8 +29,9 @@ class ListUI:
         if len(self.cards) > self.num_cards:
             win.addstr(
                 h - 1, start_x + 2,
-                f"{self.card_offset+1} - {self.card_offset+self.num_cards} of {len(self.cards)}"
-            )
+                "{} - {} of {}".format(self.card_offset + 1,
+                                       self.card_offset + self.num_cards,
+                                       len(self.cards)))
 
         if is_list_active:
             win.attroff(config.get_color("active_list"))
@@ -48,7 +49,8 @@ class ListUI:
                 break
             card_win = curses.newwin(card_height, w - 1, y, x + 1)
             card_win.addstr(0, 0, card.name, config.get_color("default"))
-            is_card_active = is_list_active and i + self.card_offset == self.active_card
+            is_card_active = is_list_active and \
+                i + self.card_offset == self.active_card
             if is_card_active:
                 win.attron(config.get_color("active_card"))
             curses.textpad.rectangle(win, y - 1, x, y + card_height, x + w)
